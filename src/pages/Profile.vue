@@ -1,70 +1,77 @@
 <template>
+
   <div class="vh-100">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-12 col-xl-4">
-          <div class="card" style="border-radius: 15px">
+        <div class="col-md-10 col-xl-8">
+
+          <div class="card" style="border-radius: 15px;">
             <div class="card-body text-center">
+
               <form class="form-widget" @submit.prevent="updateProfile">
-                <div>
-                  <img
-                    v-if="avatar_url !== ``"
-                    :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
-                    alt="Profile photo"
-                    style="height: 200px"
-                  />
-                  <img
-                    v-else
-                    src="../assets/defaultAvatar.jpg"
-                    alt="Profile photo"
-                  />
-                  <label for="avatar">Update your profile photo</label>
-                  <input
-                    type="file"
-                    id="avatar"
-                    name="avatar"
-                    accept="image/png,
-                  image/jpeg"
-                    @change="updatePicture()"
-                  />
+
+                <div class="container p-3">
+
+                  <div class="row d-flex align-items-center">
+
+                      <div class="col-md-5 col-xl-4">
+                        
+                    <img
+                      v-if="avatar_url !== ``"
+                      :src="`https://myirmalszrpixdsvjfdv.supabase.co/storage/v1/object/public/avatars/${avatar_url}`"
+                      alt="Profile photo"
+                      class="h-25"
+                    />
+                    <img v-else src="../assets/avatar.png" alt="Profile photo" class="border border-4 rounded-circle img-thumbnail" style="width: 160px; height: 160px; object-fit: cover;" />
+                    
+                    <label for="avatar" class="mt-4 font-weight-bold ">Update your profile photo</label>
+                    <input
+                      type="file"
+                      id="avatar"
+                      name="avatar"
+                      accept="image/png,
+                    image/jpeg"
+                      @change="updatePicture()"
+                    />
+                  </div>
+                  <div class="col-md-7 col-xl-8">
+
+                    <h1 class="w-100 text-start m-4 text-dark">Profile Settings</h1>
+
+                    <label for="email">Email</label>
+                    <input id="email" type="text" :value="store.user.email" disabled />
+                  
+                  
+                    <label for="username">Name</label>
+                    <input id="username" type="text" v-model="username" />
+                  
+                  
+                    <label for="website">Website</label>
+                    <input id="website" type="website" v-model="website" />
+                  
+
+                  
+                    <input
+                      type="submit"
+                      class="button primary block"
+                      :value="loading ? 'Loading ...' : 'Update'"
+                      :disabled="loading"
+                    />
+                  
+
+                  
+                    <button class="button block" @click="signOut" :disabled="loading">
+                      Sign Out
+                    </button>
+                  </div>
+
+
                 </div>
-                <div>
-                  <label for="email">Email</label>
-                  <input
-                    id="email"
-                    type="text"
-                    :value="store.user.email"
-                    disabled
-                  />
-                </div>
-                <div>
-                  <label for="username">Name</label>
-                  <input id="username" type="text" v-model="username" />
-                </div>
-                <div>
-                  <label for="website">Website</label>
-                  <input id="website" type="website" v-model="website" />
+                
                 </div>
 
-                <div>
-                  <input
-                    type="submit"
-                    class="button primary block"
-                    :value="loading ? 'Loading ...' : 'Update'"
-                    :disabled="loading"
-                  />
-                </div>
-
-                <div>
-                  <button
-                    class="button block"
-                    @click="signOut"
-                    :disabled="loading"
-                  >
-                    Sign Out
-                  </button>
-                </div>
               </form>
+
             </div>
           </div>
         </div>
