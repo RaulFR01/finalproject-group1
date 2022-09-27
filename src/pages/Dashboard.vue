@@ -69,11 +69,16 @@
   <div class="container">
     <div class="container text-left">
       <div class="row">
-        <div class="col rounded-5 col-kanban">
+        <Container
+          class="col rounded-5 col-kanban"
+          group-name="1"
+          drag-class="card-ghost"
+          drop-class="card-ghost-drop"
+        >
           <h3>Backlog</h3>
           <hr />
 
-          <ul v-for="task in tasksStore.pendingTasks" :key="task.id">
+          <Draggable v-for="task in tasksStore.pendingTasks" :key="task.id">
             <div class="card border border-0 mb-3" style="width: 100%">
               <li>
                 <div class="card-header">
@@ -134,14 +139,19 @@
                 </div>
               </li>
             </div>
-          </ul>
-        </div>
+          </Draggable>
+        </Container>
 
-        <div class="col rounded-5 col-kanban">
+        <Container
+          class="col rounded-5 col-kanban"
+          group-name="1"
+          drag-class="card-ghost"
+          drop-class="card-ghost-drop"
+        >
           <h3>In Progress</h3>
           <hr />
 
-          <ul v-for="task in tasksStore.inProcessTasks" :key="task.id">
+          <Draggable v-for="task in tasksStore.inProcessTasks" :key="task.id">
             <div class="card border border-0 mb-3" style="width: 100%">
               <li>
                 <div class="card-header">
@@ -202,14 +212,19 @@
                 </div>
               </li>
             </div>
-          </ul>
-        </div>
+          </Draggable>
+        </Container>
 
-        <div class="col rounded-5 col-kanban">
+        <Container
+          class="col rounded-5 col-kanban"
+          group-name="1"
+          drag-class="card-ghost"
+          drop-class="card-ghost-drop"
+        >
           <h3>Done</h3>
           <hr />
 
-          <ul v-for="task in tasksStore.completedTasks" :key="task.id">
+          <Draggable v-for="task in tasksStore.completedTasks" :key="task.id">
             <div class="card border border-0 mb-3" style="width: 100%">
               <li>
                 <div class="card-header">
@@ -270,8 +285,8 @@
                 </div>
               </li>
             </div>
-          </ul>
-        </div>
+          </Draggable>
+        </Container>
       </div>
     </div>
   </div>
@@ -282,11 +297,14 @@ import { ref, onMounted } from "vue";
 import useTasksStore from "../store/task";
 import { useUserStore } from "../store/user";
 import CardEdition from "../components/CardEdition.vue";
+import { Container, Draggable } from "vue3-smooth-dnd";
 
 export default {
   name: "Dashboard",
   components: {
     CardEdition,
+    Container,
+    Draggable,
   },
   setup() {
     const taskId = ref(null);
@@ -443,5 +461,14 @@ ul {
 .form-check-input:checked {
   background-color: #4e94fb;
   border-color: #4e94fb;
+}
+
+.card-ghost {
+  transition: transform 0.18s ease;
+  transform: rotateZ(5deg);
+}
+.card-ghost-drop {
+  transition: transform 0.18s ease-in-out;
+  transform: rotateZ(0deg);
 }
 </style>
