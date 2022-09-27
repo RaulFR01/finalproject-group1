@@ -73,7 +73,7 @@
           <h3>Backlog</h3>
           <hr />
 
-          <ul v-for="task in tasksStore.tasks" :key="task.id">
+          <ul v-for="task in tasksStore.pendingTasks" :key="task.id">
             <div class="card border border-0 mb-3" style="width: 100%">
               <li>
                 <div class="card-header">
@@ -141,7 +141,7 @@
           <h3>In Progress</h3>
           <hr />
 
-          <ul v-for="task in tasksStore.tasks" :key="task.id">
+          <ul v-for="task in tasksStore.inProcessTasks" :key="task.id">
             <div class="card border border-0 mb-3" style="width: 100%">
               <li>
                 <div class="card-header">
@@ -209,7 +209,7 @@
           <h3>Done</h3>
           <hr />
 
-          <ul v-for="task in tasksStore.tasks" :key="task.id">
+          <ul v-for="task in tasksStore.completedTasks" :key="task.id">
             <div class="card border border-0 mb-3" style="width: 100%">
               <li>
                 <div class="card-header">
