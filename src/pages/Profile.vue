@@ -15,11 +15,22 @@
         </p>
         <form
           v-if="store.user"
-          class="form-widget d-flex flex-column flex-lg-row justify-content-center mt-4"
+          class="
+            form-widget
+            d-flex
+            flex-column flex-lg-row
+            justify-content-center
+            mt-4
+          "
           @submit.prevent="updateProfile"
         >
           <div
-            class="col-sm-12 col-md-4 col-xl-4 p-2 justify-content-center text-center"
+            class="
+              col-sm-12 col-md-4 col-xl-4
+              p-2
+              justify-content-center
+              text-center
+            "
           >
             <h2 class="text-dark m-4">Hey, nice work!</h2>
 
@@ -75,7 +86,12 @@
           </div>
 
           <div
-            class="col-sm-12 col-md-8 col-xl-8 px-5 align-self-center text-start"
+            class="
+              col-sm-12 col-md-8 col-xl-8
+              px-5
+              align-self-center
+              text-start
+            "
           >
             <label for="username" class="label-text text-capitalize"
               >Name</label
@@ -123,9 +139,9 @@
 </template>
 
 <script>
-import { supabase } from "../supabase";
+import { ref, onMounted, onUpdated } from "vue";
 import { useUserStore, useAlertStore } from "../store/";
-import { onMounted, onUpdated, ref } from "vue";
+import { supabase } from "../supabase";
 import ValidationConstants from "../utils/ValidationConstants";
 
 export default {

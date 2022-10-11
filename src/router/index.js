@@ -12,19 +12,22 @@ const routes = [
   {
     path: "/auth",
     name: "auth",
-    component: () => import(/* webpackChunkName: 'auth' */ "../pages/Auth.vue"),
+    component: () => import("../pages/Auth.vue"),
+  },
+  {
+    path: "/resetpassword",
+    name: "ResetPassword",
+    component: () => import("../pages/ResetPassword.vue"),
   },
   {
     path: "/profile",
     name: "profile",
-    component: () =>
-      import(/* webpackChunkName: 'profile' */ "../pages/Profile.vue"),
+    component: () => import("../pages/Profile.vue"),
   },
   {
     path: "/dashboard",
     name: "dashboard",
-    component: () =>
-      import(/* webpackChunkName: 'dashboard' */ "../pages/Dashboard.vue"),
+    component: () => import("../pages/Dashboard.vue"),
   },
   {
     path: "/404",

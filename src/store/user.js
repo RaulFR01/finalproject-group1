@@ -19,13 +19,25 @@ export const useUserStore = defineStore("user", {
       if (error) {
         throw error;
       } else {
-        useAlertStore().success("Check your email");
+        useAlertStore().success(
+          `Confirm your email to finishing registering: ${email.value}`
+        );
       }
     },
     async singIn(credentials) {
       const { user, error } = await supabase.auth.signIn(credentials);
       if (error) throw error;
       this.user = user;
+    },
+    async sendPasswordRestEmail(email) {
+      const { user, error } = await supabase.auth.api.resetPasswordForEmail(
+        email,
+        {
+          redirectTo: "https://example.com/update-password",
+        }
+      );
+      if (error) throw error;
+      return user;
     },
     persist: {
       enabled: true,

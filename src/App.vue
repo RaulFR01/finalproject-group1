@@ -18,7 +18,7 @@
 
 <script>
 import { reactive, onUpdated } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { supabase } from "./supabase";
 import { useUserStore } from "./store/user";
 import { Alert, Navbar } from "./components/";
@@ -30,17 +30,22 @@ export default {
   },
   setup() {
     const router = useRouter();
+    const route = useRoute();
     const store = useUserStore();
 
     const state = reactive({
       isAuthenticated: false,
     });
 
+    const isResetPassword = () => {
+      return route.path === "/resetpassword";
+    };
+
     onUpdated(() => {
       store.user = supabase.auth.user();
       state.isAuthenticated = store.isAuthenticated;
 
-      if (!state.isAuthenticated) {
+      if (!state.isAuthenticated && !isResetPassword()) {
         router.push("/auth");
       }
     });
@@ -51,7 +56,9 @@ export default {
   },
   computed: {
     isSignIn() {
-      return this.$route.path === "/auth";
+      return (
+        this.$route.path === "/auth" || this.$route.path === "/resetpassword"
+      );
     },
     isErr() {
       return this.$route.path === "/404";

@@ -5,6 +5,7 @@
       <input
         id="email"
         type="email"
+        autoComplete="email"
         v-model="email"
         placeholder="E-mail"
         required

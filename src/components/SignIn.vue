@@ -5,6 +5,7 @@
       <input
         id="email"
         type="email"
+        autoComplete="email"
         v-model="email"
         placeholder="E-mail"
         required
@@ -27,9 +28,12 @@
     </div>
 
     <div class="d-grid">
-      <button type="submit" class="btn btn-custom btn-lg btn-block mb-5">
+      <button type="submit" class="btn btn-custom btn-lg btn-block mb-3">
         Sign in
       </button>
+      <router-link to="/resetpassword" class="mb-5"
+        >Forgot Password?</router-link
+      >
     </div>
   </form>
 </template>
